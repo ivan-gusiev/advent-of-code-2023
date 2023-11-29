@@ -8,13 +8,20 @@ class AocInput {
             return "${System.getProperty("user.home")}/aoc/${day.year}/${day.day}/input.txt";
         }
 
+        fun file(day: AocDay): File {
+            return File(path(day))
+        }
+
         fun bytes(day: AocDay): ByteArray {
-            val path = path(day);
-            return File(path).readBytes();
+            return File(path(day)).readBytes();
         }
 
         fun string(day: AocDay): String {
+            return File(path(day)).readText();
+        }
 
+        fun lines(day: AocDay): List<String> {
+            return File(path(day)).readLines();
         }
     }
 
