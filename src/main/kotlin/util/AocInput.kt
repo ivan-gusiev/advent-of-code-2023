@@ -1,3 +1,5 @@
+package util
+
 import java.io.File
 
 data class AocDay(val year: Int, val day: Int)
