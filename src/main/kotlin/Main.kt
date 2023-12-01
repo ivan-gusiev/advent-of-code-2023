@@ -6,7 +6,7 @@ fun main(args: Array<String>) {
     val classes = findAllClassesUsingClassLoader("")
     val clazz = classes
         .stream()
-        .filter { x -> x.name.startsWith("Day") }
+        .filter { x -> x.name.startsWith("Day") && !(x.name.contains("$")) }
         .sorted { l, r -> dayIndex(l).compareTo(dayIndex(r)) }
         .findFirst()
         .get()
