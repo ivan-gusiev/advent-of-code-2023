@@ -12,11 +12,13 @@ year = "2023"
 
 print(f"Initializing day {day}...")
 
+
 ktTemplate = "./src/main/kotlin/template/Day0.kt"
 ktFile = f"./src/main/kotlin/Day{day}.kt"
 inputDir = path.expanduser(f"~/aoc/{year}/{day}")
 inputFile = f"{inputDir}/input.txt"
 downloadPath = f"https://adventofcode.com/{year}/day/{day}/input"
+sessionId = os.environ["AOC_SESSION_ID"]
 
 gitStatus = subprocess.check_output(["git", "status", "--porcelain"]).decode("utf-8", "ignore")
 print(gitStatus)
