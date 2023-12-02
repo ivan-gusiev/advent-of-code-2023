@@ -21,7 +21,6 @@ class Day1: Runner {
         var result = 0
 
         for (line in lines) {
-            //val properLine = digitize(line)
             val number = firstDigitFromTheLeft(line) + firstDigitFromTheRight(line)
             println("$line, $number")
             result += number.toInt()
@@ -40,7 +39,6 @@ class Day1: Runner {
         }
 
         return digitizeDigit(matches.first())
-        //return (input.first { c -> c.isDigit() }).toString()
     }
 
     private fun firstDigitFromTheRight(input: String): String {
@@ -54,13 +52,9 @@ class Day1: Runner {
         }
 
         return digitizeDigit(matches.last())
-        //return (input.last { c -> c.isDigit() }).toString()
     }
 
     private val DIGIT_REGEX = Regex("one|two|three|four|five|six|seven|eight|nine|1|2|3|4|5|6|7|8|9")
-    private fun digitize(input: String): String {
-        return input.replace(DIGIT_REGEX) { result -> digitizeDigit(result) }
-    }
     private fun digitizeDigit(input: MatchResult): String {
         return input.value.replace("one", "1")
             .replace("two", "2")

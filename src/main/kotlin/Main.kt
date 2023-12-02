@@ -3,11 +3,12 @@ import java.io.InputStreamReader
 import java.util.stream.Collectors
 
 fun main(args: Array<String>) {
+    val goodClassRegex = Regex("""^Day\d+$""")
     val classes = findAllClassesUsingClassLoader("")
     val clazz = classes
         .stream()
-        .filter { x -> x.name.startsWith("Day") && !(x.name.contains("$")) }
-        .sorted { l, r -> dayIndex(l).compareTo(dayIndex(r)) }
+        .filter { x -> goodClassRegex.matches(x.name) }
+        .sorted { l, r -> dayIndex(r).compareTo(dayIndex(l)) }
         .findFirst()
         .get()
 
