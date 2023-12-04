@@ -4,10 +4,10 @@ import Runner
 import util.AocDay
 import util.AocInput
 
-typealias InputType = List<String>;
+typealias Day0InputType = List<String>;
 
 @Suppress("unused")
-class Day0: Runner {
+class Day0 : Runner {
     override fun run() {
         val day = AocDay("TemplateYear".toInt(), "TemplateDay".toInt())
         val lines = AocInput.lines(day)
@@ -15,11 +15,11 @@ class Day0: Runner {
         part2(lines)
     }
 
-    fun part1(input: InputType) {
+    private fun part1(input: Day0InputType) {
 
     }
 
-    fun part2(input: InputType) {
+    private fun part2(input: Day0InputType) {
 
     }
 }

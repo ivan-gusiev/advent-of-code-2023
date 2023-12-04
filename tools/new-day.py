@@ -1,17 +1,14 @@
+import os
 import shutil
 import subprocess
 import sys
-import os
-import urllib.error
 import urllib.request
 from os import path
-
 
 day = int(sys.argv[1])
 year = "2023"
 
 print(f"Initializing day {day}...")
-
 
 ktTemplate = "./src/main/kotlin/template/Day0.kt"
 ktFile = f"./src/main/kotlin/Day{day}.kt"

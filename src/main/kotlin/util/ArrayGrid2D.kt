@@ -1,6 +1,6 @@
 package util
 
-class ArrayGrid2D<T>(override val height: Int, override val width: Int, init: () -> T): Grid2D<T> {
+class ArrayGrid2D<T>(override val height: Int, override val width: Int, init: () -> T) : Grid2D<T> {
     companion object Factory {
         fun ints(height: Int, width: Int): ArrayGrid2D<Int> {
             return ArrayGrid2D(height, width) { 0 }
@@ -28,9 +28,9 @@ class ArrayGrid2D<T>(override val height: Int, override val width: Int, init: ()
     private val items: ArrayList<ArrayList<T>> = ArrayList(height)
 
     init {
-        for (y in 0 ..< height) {
+        for (y in 0..<height) {
             val row = ArrayList<T>(width)
-            for (x in 0 ..< width) {
+            for (x in 0..<width) {
                 row.add(init())
             }
             items.add(row)
@@ -43,5 +43,9 @@ class ArrayGrid2D<T>(override val height: Int, override val width: Int, init: ()
 
     override operator fun set(yCoord: Int, xCoord: Int, value: T) {
         items[yCoord][xCoord] = value
+    }
+
+    override fun toString(): String {
+        return stringRepresentation()
     }
 }

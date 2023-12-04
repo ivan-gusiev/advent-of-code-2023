@@ -1,8 +1,7 @@
-
 import util.AocDay
 import util.AocInput
 
-class Day1: Runner {
+class Day1 : Runner {
     val TEST_INPUT = """
         1abc2
         pqr3stu8vwx

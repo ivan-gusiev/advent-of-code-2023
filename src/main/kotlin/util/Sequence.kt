@@ -1,4 +1,5 @@
 package util
+
 class Sequence {
     companion object {
         fun <T> split(input: List<T>, separator: T): List<List<T>> {
@@ -21,7 +22,7 @@ class Sequence {
         }
 
         fun <T> join(input: List<T>, join: (lhs: T, rhs: T) -> T) {
-            
+
         }
     }
 }

@@ -1,8 +1,6 @@
 package util
 
-import java.lang.RuntimeException
-
-class InjectionGrid2D<T, U>(val transform: (IntPoint2D, T) -> U, val source: Grid2D<T>): Grid2D<U> {
+class InjectionGrid2D<T, U>(val transform: (IntPoint2D, T) -> U, val source: Grid2D<T>) : Grid2D<U> {
     override val height: Int = source.height
     override val width: Int = source.width
 
@@ -12,5 +10,9 @@ class InjectionGrid2D<T, U>(val transform: (IntPoint2D, T) -> U, val source: Gri
 
     override fun set(yCoord: Int, xCoord: Int, value: U) {
         throw RuntimeException("Cannot set values on injection grid")
+    }
+
+    override fun toString(): String {
+        return stringRepresentation()
     }
 }

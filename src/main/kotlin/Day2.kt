@@ -1,11 +1,10 @@
-
 import util.AocDay
 import util.AocInput
 import kotlin.math.max
 
 typealias InputType = List<String>;
 
-class Day2: Runner {
+class Day2 : Runner {
     data class CubeSet(val red: Int, val green: Int, val blue: Int) {
         companion object {
             fun parse(input: String): CubeSet {
@@ -35,7 +34,8 @@ class Day2: Runner {
             return CubeSet(
                 max(this.red, other.red),
                 max(this.green, other.green),
-                max(this.blue, other.blue))
+                max(this.blue, other.blue)
+            )
         }
 
         fun power(): Int {
@@ -81,7 +81,13 @@ class Day2: Runner {
     fun part1(input: InputType) {
         val targetBag = CubeSet(12, 13, 14)
         val games = input.map(Game::parse)
-        val possibleIds = games.map { g -> if (g.possible(targetBag)) {g.id} else {0} }
+        val possibleIds = games.map { g ->
+            if (g.possible(targetBag)) {
+                g.id
+            } else {
+                0
+            }
+        }
         games.forEach { g -> println("${g.possible(targetBag)}: $g") }
         println(possibleIds.sum())
     }
