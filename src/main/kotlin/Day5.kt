@@ -1,4 +1,3 @@
-
 import util.AocDay
 import util.AocInput
 import util.AocSequence
@@ -107,7 +106,11 @@ class Day5 : Runner {
         }
 
         fun selectMapping(source: Long): FoodMapping {
-            return mappings.find { it.sourceStart <= source && source < it.sourceStart + it.length } ?: FoodMapping(0, 0, Long.MAX_VALUE)
+            return mappings.find { it.sourceStart <= source && source < it.sourceStart + it.length } ?: FoodMapping(
+                0,
+                0,
+                Long.MAX_VALUE
+            )
         }
     }
 
@@ -129,7 +132,7 @@ class Day5 : Runner {
             val start = pair[0]
             val count = pair[1]
             println("processing $pairCount/${pairs.count()} [$start, ${start + count}], count=$count")
-            for (i in start .. start + count) {
+            for (i in start..start + count) {
                 yield(i)
             }
         }
@@ -147,7 +150,7 @@ class Day5 : Runner {
         for (seed in seeds) {
             progress++
             if (progress % 10_000_000 == 0) {
-                println("${progress/1_000_000}M seeds processed")
+                println("${progress / 1_000_000}M seeds processed")
             }
 
             var current = seed
