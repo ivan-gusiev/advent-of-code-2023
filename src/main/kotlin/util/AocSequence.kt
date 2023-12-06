@@ -1,6 +1,6 @@
 package util
 
-class Sequence {
+class AocSequence {
     companion object {
         fun <T> split(input: List<T>, separator: T): List<List<T>> {
             val result: ArrayList<List<T>> = ArrayList()
