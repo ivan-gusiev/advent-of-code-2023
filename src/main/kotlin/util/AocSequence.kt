@@ -21,8 +21,13 @@ class AocSequence {
             return result;
         }
 
-        fun <T> join(input: List<T>, join: (lhs: T, rhs: T) -> T) {
-
+        fun <T> spectrum(input: List<T>): Map<T, Int> {
+            val result: HashMap<T, Int> = HashMap()
+            for (item in input) {
+                val count = result.getOrDefault(item, 0)
+                result[item] = count + 1
+            }
+            return result
         }
     }
 }
