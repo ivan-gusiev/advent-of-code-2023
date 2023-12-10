@@ -29,5 +29,10 @@ class AocSequence {
             }
             return result
         }
+
+        fun <T> List<T>.tap(op: (T) -> Unit): List<T> {
+            this.forEach(op)
+            return this
+        }
     }
 }
