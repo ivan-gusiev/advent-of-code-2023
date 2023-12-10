@@ -14,8 +14,18 @@ class ArrayGrid2D<T>(override val height: Int, override val width: Int, init: ()
             return ArrayGrid2D(height, width) { "" }
         }
 
+        fun charsOfLines(lines: List<String>): ArrayGrid2D<Char> {
+            val grid = ArrayGrid2D(lines.size, lines[0].length) { '.' }
+            lines.forEachIndexed { y, line ->
+                line.forEachIndexed { x, char ->
+                    grid[y, x] = char
+                }
+            }
+            return grid
+        }
+
         fun <T> clone(grid: Grid2D<T>): ArrayGrid2D<T> {
-            val target = ArrayGrid2D<T>(grid.height, grid.width) { null!! } // never read null
+            val target = ArrayGrid2D<T>(grid.height, grid.width) { grid[0, 0] }
             for (y in 0..<grid.height) {
                 for (x in 0..<grid.width) {
                     target[y, x] = grid[y, x]

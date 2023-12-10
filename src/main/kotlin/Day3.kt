@@ -1,4 +1,5 @@
 import util.*
+import util.ArrayGrid2D.Factory.charsOfLines
 
 typealias Day3InputType = ArrayGrid2D<Char>;
 
@@ -20,12 +21,7 @@ class Day3 : Runner {
         val day = AocDay("2023".toInt(), "3".toInt())
         val lines = AocInput.lines(day)
         //val lines  = TEST_INPUT.split("\n")
-        val grid = ArrayGrid2D(lines.size, lines[0].length) { '.' }
-        lines.forEachIndexed { y, line ->
-            line.forEachIndexed { x, char ->
-                grid[y, x] = char
-            }
-        }
+        val grid = charsOfLines(lines)
         part1(grid)
         println("---")
         part2(grid)

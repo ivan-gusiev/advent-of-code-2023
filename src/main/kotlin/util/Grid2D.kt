@@ -20,12 +20,12 @@ interface Grid2D<T> {
         set(coord.y, coord.x, value)
     }
 
-    fun <U> map(transform: (IntPoint2D, T) -> U): ArrayGrid2D<U> {
+    fun <U> mapWithIndex(transform: (IntPoint2D, T) -> U): ArrayGrid2D<U> {
         return InjectionGrid2D(transform, this).let(ArrayGrid2D.Factory::clone)
     }
 
     fun <U> map(transform: (T) -> U): ArrayGrid2D<U> {
-        return map { _, value -> transform(value) }
+        return mapWithIndex { _, value -> transform(value) }
     }
 
     fun enumerate(): Iterable<IntPoint2D> {
@@ -57,4 +57,48 @@ interface Grid2D<T> {
     fun safe(): SafeGridView2D<T> {
         return SafeGridView2D(this)
     }
+
+    fun find(predicate: (T) -> Boolean): IntPoint2D? {
+        for (y in 0..<height) {
+            for (x in 0..<width) {
+                if (predicate(this[y, x])) {
+                    return IntPoint2D(y, x)
+                }
+            }
+        }
+        return null
+    }
+
+    fun row(y: Int): Sequence<T> {
+        return sequence {
+            for (x in 0..<width) {
+                yield(this@Grid2D[y, x])
+            }
+        }
+    }
+
+    fun rows(): Sequence<Sequence<T>> {
+        return sequence {
+            for (y in 0..<height) {
+                yield(row(y))
+            }
+        }
+    }
+
+    fun col(x: Int): Sequence<T> {
+        return sequence {
+            for (y in 0..<height) {
+                yield(this@Grid2D[y, x])
+            }
+        }
+    }
+
+    fun cols(): Sequence<Sequence<T>> {
+        return sequence {
+            for (x in 0..<width) {
+                yield(col(x))
+            }
+        }
+    }
+
 }
