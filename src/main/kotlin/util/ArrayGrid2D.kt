@@ -33,6 +33,38 @@ class ArrayGrid2D<T>(override val height: Int, override val width: Int, init: ()
             }
             return target
         }
+
+        fun <T> insertRow(grid: Grid2D<T>, rowIndex: Int, items: List<T>): ArrayGrid2D<T> {
+            require(rowIndex <= grid.height)
+            require(items.size == grid.width)
+
+            val target = ArrayGrid2D<T>(grid.height + 1, grid.width) { grid[0, 0] }
+            for (y in 0..<grid.height) {
+                for (x in 0..<grid.width) {
+                    target[y + if (y < rowIndex) 0 else 1, x] = grid[y, x]
+                }
+            }
+            for (x in 0..<grid.width) {
+                target[rowIndex, x] = items[x]
+            }
+            return target
+        }
+
+        fun <T> insertColumn(grid: Grid2D<T>, columnIndex: Int, items: List<T>): ArrayGrid2D<T> {
+            require(columnIndex <= grid.width)
+            require(items.size == grid.height)
+
+            val target = ArrayGrid2D<T>(grid.height, grid.width + 1) { grid[0, 0] }
+            for (y in 0..<grid.height) {
+                for (x in 0..<grid.width) {
+                    target[y, x + if (x < columnIndex) 0 else 1] = grid[y, x]
+                }
+            }
+            for (y in 0..<grid.height) {
+                target[y, columnIndex] = items[y]
+            }
+            return target
+        }
     }
 
     private val items: ArrayList<ArrayList<T>> = ArrayList(height)

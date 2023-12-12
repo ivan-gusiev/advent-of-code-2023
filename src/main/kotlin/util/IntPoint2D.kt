@@ -1,5 +1,7 @@
 package util
 
+import kotlin.math.abs
+
 data class IntPoint2D(val y: Int, val x: Int) {
     companion object Factory {
         fun box(y: Int, x: Int, height: Int, width: Int): Iterable<IntPoint2D> {
@@ -22,5 +24,9 @@ data class IntPoint2D(val y: Int, val x: Int) {
 
     operator fun minus(rhs: IntPoint2D): IntPoint2D {
         return IntPoint2D(y - rhs.y, x - rhs.x)
+    }
+
+    fun manhattanDistanceTo(rhs: IntPoint2D): Int {
+        return abs(y - rhs.y) + abs(x - rhs.x)
     }
 }
