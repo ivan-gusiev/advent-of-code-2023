@@ -34,5 +34,15 @@ class AocSequence {
             this.forEach(op)
             return this
         }
+
+        fun <T> Sequence<T>.tap(op: (T) -> Unit): Sequence<T> {
+            val seq: Sequence<T> = this;
+            return sequence {
+                for (item in seq) {
+                    op(item)
+                    yield(item)
+                }
+            }
+        }
     }
 }
