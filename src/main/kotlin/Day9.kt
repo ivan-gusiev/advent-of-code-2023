@@ -1,4 +1,3 @@
-
 import util.AocDay
 import util.AocInput
 import util.AocSequence.Companion.tap

@@ -1,5 +1,4 @@
 import util.AocArithm
-import util.AocArithm.Companion.lcm
 import util.AocDay
 import util.AocInput
 import java.math.BigInteger
@@ -77,7 +76,11 @@ class Day8 : Runner {
         println(zs.reduce(AocArithm::lcm))
     }
 
-    fun describeCycle(instructionsString: String, nodeDictionary: Map<String, InputNode>, start: String): Triple<Int, Int, List<Int>> {
+    fun describeCycle(
+        instructionsString: String,
+        nodeDictionary: Map<String, InputNode>,
+        start: String
+    ): Triple<Int, Int, List<Int>> {
         val instructionSequence = sequence {
             while (true) {
                 yieldAll(instructionsString.indices)

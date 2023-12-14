@@ -85,7 +85,7 @@ class Day10 : Runner {
         }
 
         val result = ArrayGrid2D.clone(path)
-        for (y in 0 ..< result.height) {
+        for (y in 0..<result.height) {
             findInnerCellsInRow(result, y)
         }
         return result

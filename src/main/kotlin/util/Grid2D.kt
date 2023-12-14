@@ -20,12 +20,12 @@ interface Grid2D<T> {
         set(coord.y, coord.x, value)
     }
 
-    fun <U> mapWithIndex(transform: (IntPoint2D, T) -> U): ArrayGrid2D<U> {
-        return InjectionGrid2D(transform, this).let(ArrayGrid2D.Factory::clone)
+    fun <U> mapWithIndex(transform: (IntPoint2D) -> U): ArrayGrid2D<U> {
+        return CalculatedGrid2D(height, width, transform).let(ArrayGrid2D.Factory::clone)
     }
 
     fun <U> map(transform: (T) -> U): ArrayGrid2D<U> {
-        return mapWithIndex { _, value -> transform(value) }
+        return mapWithIndex { coord -> transform(this[coord]) }
     }
 
     fun enumerate(): Iterable<IntPoint2D> {
@@ -101,4 +101,9 @@ interface Grid2D<T> {
         }
     }
 
+    fun pairwiseEquals(other: Grid2D<T>): Boolean {
+        return height == other.height && width == other.width && enumerate().all { coord ->
+            this[coord] == other[coord]
+        }
+    }
 }

@@ -1,7 +1,4 @@
-
-import Runner
 import util.AocDay
-import util.AocInput
 import util.AocSequence.Companion.tap
 
 typealias Day12InputType = List<Day12.SpringConditions>;
@@ -66,6 +63,6 @@ class Day12 : Runner {
     }
 
     private fun part2(input: Day12InputType) {
-        println(input.asSequence().map { it * 5 } .map(SpringConditions::validArrangementsCount).tap(::println).sum())
+        println(input.asSequence().map { it * 5 }.map(SpringConditions::validArrangementsCount).tap(::println).sum())
     }
 }
