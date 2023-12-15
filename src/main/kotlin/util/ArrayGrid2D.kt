@@ -90,4 +90,41 @@ class ArrayGrid2D<T>(override val height: Int, override val width: Int, init: ()
     override fun toString(): String {
         return stringRepresentation()
     }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Grid2D<*>) return false
+
+        if (height != other.height) return false
+        if (width != other.width) return false
+
+        for (y in 0..<height) {
+            for (x in 0..<width) {
+                if (this[y, x] != other[y, x]) {
+                    return false
+                }
+            }
+        }
+
+        return true
+    }
+
+    private var hashCodeCache = 0
+    private var hashCodeCached = false
+    override fun hashCode(): Int {
+        if (hashCodeCached) {
+            return hashCodeCache
+        }
+
+        var result = height
+        result = 31 * result + width
+        for (y in 0..<height) {
+            for (x in 0..<width) {
+                result = 31 * result + this[y, x].hashCode()
+            }
+        }
+        hashCodeCache = result
+        hashCodeCached = true
+        return result
+    }
 }

@@ -1,7 +1,6 @@
 package util
 
-class CalculatedGrid2D<T>(override val height: Int, override val width: Int, val transform: (IntPoint2D) -> T) :
-    Grid2D<T> {
+class CalculatedGrid2D<T>(override val height: Int, override val width: Int, val transform: (IntPoint2D) -> T) : Grid2D<T> {
     companion object {
         fun <T> reflectHorizontally(other: Grid2D<T>): CalculatedGrid2D<T> {
             return CalculatedGrid2D(other.height, other.width) { (y, x) ->
